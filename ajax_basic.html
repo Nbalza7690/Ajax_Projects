@@ -12,16 +12,37 @@
 				<input type="button" class="button" value="Get Content" id="btn_content" onclick="getContent();"/>
 			</div>
         <script type="text/javascript">
+
+        // First setup the XML Http Request object
         
             var ajax = new XMLHttpRequest();
 
+            // Second prepare the open ajax request
+            // The open method requires two paramaters
+            // Here we use Get and then what piece of information we are referencing
+
             ajax.open("GET", "content.html");
+
+            // Third Define the ajax callback method
+
+            // Ready states are as follows
+            // 0 - The request is not initialized
+            // 1 - The request has been setup
+            // 2 - The request has been sent
+            // 3 - The request is in progress
+            // 4 - The request is complete
+
+            // Onreadystatechange is called everytime the ready state changes
+            // If the ready state is equal to 4 we change the info of the div "content"
 
             ajax.onreadystatechange = function() {
                 if (ajax.readyState == 4) {
                     document.getElementById("content").innerHTML = ajax.responseText;
                 }
             }
+
+            // Forth Send the ajax request for data
+            // In this case it is setup to run when the button is clicked
 
             function getContent() {
                 ajax.send();
